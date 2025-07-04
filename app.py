@@ -4,6 +4,10 @@ import numpy as np
 import joblib
 import json
 from tensorflow.keras.models import load_model
+import sys
+import streamlit as st
+
+
 
 st.set_page_config(page_title="Intrusion Detection Dashboard", layout="wide")
 st.title("🚨 Ensemble Intrusion Detection System")
