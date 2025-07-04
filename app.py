@@ -22,7 +22,7 @@ model_path = f"models/{domain}"
 
 if domain == "hospital":
     model = load_model(f"{model_path}/hospital_cnn_lstm_model.keras")
-    scaler = joblib.load(f"{model_path}/hospital_intrusion_scaler.pkl")
+    scaler = joblib.load(f"{model_path}/hospital_intrusion_scaler_resaved.pkl")
     feature_cols = [
         'frame.time_delta', 'frame.time_relative', 'frame.len', 'tcp.srcport',
         'tcp.dstport', 'tcp.flags', 'tcp.time_delta', 'tcp.len', 'tcp.ack',
@@ -38,7 +38,15 @@ if domain == "hospital":
     ]
 else:
     model = joblib.load(f"{model_path}/model.pkl")
-    scaler = joblib.load(f"{model_path}/scaler.pkl")
+
+    # ✅ use the resaved scaler
+    if domain == "can":
+        scaler = joblib.load(f"{model_path}/scaler_resaved.pkl")
+    elif domain == "iot_logistic":
+        scaler = joblib.load(f"{model_path}/scaler_resaved.pkl")
+    elif domain == "nsl_kdd":
+        scaler = joblib.load(f"{model_path}/scaler_resaved.pkl")
+
     with open(f"{model_path}/metadata.json") as f:
         meta = json.load(f)
     feature_cols = meta["features"]
@@ -142,6 +150,7 @@ if st.button("🔍 Predict") and inputs:
 
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
+
 
 #.venv\Scripts\activate
 
