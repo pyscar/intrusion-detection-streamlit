@@ -23,9 +23,7 @@ for name, (load_path, save_path) in scaler_paths.items():
     print(f"[🔄] Processing: {name}")
     try:
         scaler = joblib.load(load_path)
-        joblib.dump(scaler, save_path)
+        joblib.dump(scaler, save_path, protocol=5)
         print(f"[✅] Resaved to: {save_path}\n")
     except Exception as e:
         print(f"[❌] Failed for {name}: {e}\n")
-
-#python resave_scalers.py
