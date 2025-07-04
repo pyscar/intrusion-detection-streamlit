@@ -1,8 +1,8 @@
-numpy
+tensorflow==2.13.0
+streamlit
 pandas
+numpy
 scikit-learn
 joblib
 xgboost
 lightgbm
-tensorflow
-flask
